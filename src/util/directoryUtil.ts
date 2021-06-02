@@ -14,7 +14,7 @@ export const mapDirectory = (directory: string): Promise<string[]> => {
         reject(err);
       } else {
         const fullPaths = files.map((fileName) => {
-          return path.join(pathToDirectory, fileName);
+          return path.join(pathToDirectory, "../", fileName);
         });
 
         resolve(fullPaths);

@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-export const produceComponent = {
+module.exports = {
   command: "reactifold.produceComponent",
   callback: (): void => {
     vscode.window
