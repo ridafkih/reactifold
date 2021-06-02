@@ -24,7 +24,7 @@ export const produceComponent: CommandHandler = {
         title: "Component Name",
       })
       .then((componentName) => {
-        if (!componentName) {
+        if (!componentName || !uri) {
           return;
         }
 
