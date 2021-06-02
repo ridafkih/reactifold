@@ -9,6 +9,6 @@ function ${componentName}() {
   )
 }
   
-export default Component
+export default ${componentName}
 `;
 };
