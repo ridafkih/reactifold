@@ -10,8 +10,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:reactifold.produceComponent",
-    "onCommand:reactifold.printCurrentFile"
+    "onCommand:reactifold.produceComponent"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -19,16 +18,12 @@
       {
         "command": "reactifold.produceComponent",
         "title": "Create React Component"
-      },
-      {
-        "command": "reactifold.printCurrentFile",
-        "title": "Print Current File"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "reactifold.printCurrentFile",
+          "command": "reactifold.produceComponent",
           "when": "explorerResourceIsFolder"
         }
       ]

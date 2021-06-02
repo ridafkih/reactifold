@@ -1,9 +1,10 @@
+import * as path from "path";
 import * as vscode from "vscode";
 import { CommandHandler } from "../types";
 
 export const produceComponent: CommandHandler = {
   command: "reactifold.produceComponent",
-  callback: (): void => {
+  callback: (uri: vscode.Uri): void => {
     vscode.window
       .showInputBox({
         prompt: "You can name your functional component here.",
@@ -12,8 +13,13 @@ export const produceComponent: CommandHandler = {
           return !token ? "Enter a valid component name" : null;
         },
       })
-      .then((value) => {
-        console.log(value);
+      .then((componentName) => {
+        const componentUrl: vscode.Uri = vscode.Uri.joinPath(
+          uri,
+          `${componentName}.jsx`
+        );
+        const edit: vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
+        edit.createFile(componentUrl, { ignoreIfExists: true });
       });
   },
 };
