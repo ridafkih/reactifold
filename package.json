@@ -17,7 +17,7 @@
     "commands": [
       {
         "command": "reactifold.produceComponent",
-        "title": "Hello World"
+        "title": "Create React Component"
       }
     ]
   },
