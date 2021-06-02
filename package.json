@@ -28,7 +28,8 @@
     "menus": {
       "explorer/context": [
         {
-          "command": "reactifold.printCurrentFile"
+          "command": "reactifold.printCurrentFile",
+          "when": "explorerResourceIsFolder"
         }
       ]
     }
