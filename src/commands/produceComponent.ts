@@ -1,6 +1,19 @@
+import * as fs from "fs";
 import * as path from "path";
 import * as vscode from "vscode";
 import { CommandHandler } from "../types";
+
+const createFileUri = (
+  base: vscode.Uri,
+  componentName: string,
+  extension: string
+): vscode.Uri => {
+  return vscode.Uri.joinPath(
+    base,
+    componentName,
+    `${componentName}.${extension}`
+  );
+};
 
 export const produceComponent: CommandHandler = {
   command: "reactifold.produceComponent",
@@ -12,19 +25,41 @@ export const produceComponent: CommandHandler = {
       })
       .then((componentName) => {
         if (!componentName) {
-          return vscode.window.showErrorMessage("Invalid Component Name");
+          return;
         }
 
-        const componentUrl: vscode.Uri = vscode.Uri.joinPath(
-          uri,
-          `${componentName}.tsx`
-        );
-        const edit: vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
-        const position: vscode.Position = new vscode.Position(0, 0);
-        const editRange: vscode.Range = new vscode.Range(position, position);
-        edit.createFile(componentUrl, { ignoreIfExists: true });
-        edit.replace(componentUrl, editRange, "SWAG\nSWAG");
-        vscode.workspace.applyEdit(edit);
+        fs.mkdir(uri.fsPath, (err) => {
+          if (err) {
+            return vscode.window.showErrorMessage("Error Creating Component");
+          }
+
+          const position: vscode.Position = new vscode.Position(0, 0);
+          const newFileRange: vscode.Range = new vscode.Range(
+            position,
+            position
+          );
+
+          const componentUrl: vscode.Uri = createFileUri(
+            uri,
+            componentName,
+            "tsx"
+          );
+          const componentEdit: vscode.WorkspaceEdit =
+            new vscode.WorkspaceEdit();
+          componentEdit.createFile(componentUrl, { ignoreIfExists: true });
+          componentEdit.replace(componentUrl, newFileRange, "SWAG\nSWAG");
+          vscode.workspace.applyEdit(componentEdit);
+
+          const cssModuleUrl: vscode.Uri = createFileUri(
+            uri,
+            componentName,
+            "module.css"
+          );
+          const cssModuleEdit: vscode.WorkspaceEdit =
+            new vscode.WorkspaceEdit();
+          cssModuleEdit.createFile(cssModuleUrl, { ignoreIfExists: true });
+          vscode.workspace.applyEdit(cssModuleEdit);
+        });
       });
   },
 };
