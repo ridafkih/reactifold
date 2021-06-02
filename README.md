@@ -1,6 +1,8 @@
 ## Reactifold
 
-### Reactifold only supports the following file structure for React components. 
+![video of extension creating component](https://i.imgur.com/i7tDzmg.gif)
+
+### This VSCode extension only supports the following file structure for React components. 
 ```
 ├── ...
 ├── componentName
