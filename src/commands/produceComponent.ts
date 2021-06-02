@@ -28,8 +28,9 @@ export const produceComponent: CommandHandler = {
           return;
         }
 
-        fs.mkdir(uri.fsPath, (err) => {
+        fs.mkdir(path.join(uri.path, componentName), (err) => {
           if (err) {
+            console.error(err);
             return vscode.window.showErrorMessage("Error Creating Component");
           }
 
