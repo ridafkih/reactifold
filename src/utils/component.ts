@@ -6,9 +6,9 @@ import styles from "./${componentName}.module.css";
 function ${componentName}() {
   return (
     <div></div>
-  )
+  );
 }
   
-export default ${componentName}
+export default ${componentName};
 `;
 };
