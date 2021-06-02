@@ -20,6 +20,7 @@ export const produceComponent: CommandHandler = {
         );
         const edit: vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
         edit.createFile(componentUrl, { ignoreIfExists: true });
+        vscode.workspace.applyEdit(edit);
       });
   },
 };
