@@ -7,14 +7,14 @@ import * as path from "path";
  * @returns An array of full file paths.
  */
 export const mapDirectory = (directory: string): Promise<string[]> => {
-  const pathToDirectory: string = path.join(__dirname, directory);
+  const pathToDirectory: string = path.join(__dirname, "../", directory);
   return new Promise((resolve, reject) => {
     fs.readdir(pathToDirectory, (err, files) => {
       if (err) {
         reject(err);
       } else {
         const fullPaths = files.map((fileName) => {
-          return path.join(pathToDirectory, "../", fileName);
+          return path.join(pathToDirectory, fileName);
         });
 
         resolve(fullPaths);
