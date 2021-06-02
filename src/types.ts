@@ -1,4 +1,6 @@
+import * as vscode from "vscode";
+
 export interface CommandHandler {
   command: string;
-  callback(): void;
+  callback(uri: vscode.Uri): void;
 }

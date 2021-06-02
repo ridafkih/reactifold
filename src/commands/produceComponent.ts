@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
+import { CommandHandler } from "../types";
 
-module.exports = {
+export const produceComponent: CommandHandler = {
   command: "reactifold.produceComponent",
   callback: (): void => {
     vscode.window

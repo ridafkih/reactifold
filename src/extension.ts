@@ -1,28 +1,20 @@
 import * as vscode from "vscode";
 import { CommandHandler } from "./types";
-import { mapDirectory } from "./util/directoryUtil";
+
+import { printCurrentFile } from "./commands/printCurrentFile";
+import { produceComponent } from "./commands/produceComponent";
 
 export function activate(context: vscode.ExtensionContext) {
-  mapDirectory("commands")
-    .then((filePaths) => {
-      const commandHandlers: CommandHandler[] = [];
-      filePaths.map((filePath) => {
-        try {
-          const commandHandler: CommandHandler = require(filePath);
-          commandHandlers.push(commandHandler);
-        } catch (e) {}
-      });
-      return commandHandlers;
-    })
-    .then((commands: CommandHandler[]) => {
-      const disposables: vscode.Disposable[] = commands.map(
-        ({ command, callback }) => {
-          console.log(`:: registering command ${command}`);
-          return vscode.commands.registerCommand(command, callback);
-        }
-      );
-      context.subscriptions.push(...disposables);
-    });
+  const commands: CommandHandler[] = [printCurrentFile, produceComponent];
+
+  for (let { command, callback } of commands) {
+    console.log(`:: registering ${command}`);
+    const disposable: vscode.Disposable = vscode.commands.registerCommand(
+      command,
+      callback
+    );
+    context.subscriptions.push(disposable);
+  }
 }
 
 export function deactivate() {}

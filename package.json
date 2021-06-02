@@ -10,7 +10,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:reactifold.produceComponent"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -18,8 +18,19 @@
       {
         "command": "reactifold.produceComponent",
         "title": "Create React Component"
+      },
+      {
+        "command": "reactifold.printCurrentFile",
+        "title": "Print Current File"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "reactifold.printCurrentFile"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
