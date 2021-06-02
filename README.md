@@ -1,4 +1,5 @@
 ## Reactifold
+> Easily create modularized React Components!
 
 ![video of extension creating component](https://i.imgur.com/i7tDzmg.gif)
 
