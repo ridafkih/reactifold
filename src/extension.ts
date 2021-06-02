@@ -1,11 +1,10 @@
 import * as vscode from "vscode";
 import { CommandHandler } from "./types";
 
-import { printCurrentFile } from "./commands/printCurrentFile";
 import { produceComponent } from "./commands/produceComponent";
 
 export function activate(context: vscode.ExtensionContext) {
-  const commands: CommandHandler[] = [printCurrentFile, produceComponent];
+  const commands: CommandHandler[] = [produceComponent];
 
   for (let { command, callback } of commands) {
     console.log(`:: registering ${command}`);
