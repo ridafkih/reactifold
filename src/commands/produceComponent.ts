@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as vscode from "vscode";
 import { CommandHandler } from "../types";
+import { generateComponentTemplate } from "../utils/component";
 
 const createFileUri = (
   base: vscode.Uri,
@@ -48,15 +49,12 @@ export const produceComponent: CommandHandler = {
           const componentEdit: vscode.WorkspaceEdit =
             new vscode.WorkspaceEdit();
 
-          const templateContent = fs
-            .readFileSync(
-              path.join(__dirname, "template", "Component.txt"),
-              "utf-8"
-            )
-            .replace(/{{{ ComponentName }}}/g, componentName);
-
           componentEdit.createFile(componentUrl, { ignoreIfExists: true });
-          componentEdit.replace(componentUrl, newFileRange, templateContent);
+          componentEdit.replace(
+            componentUrl,
+            newFileRange,
+            generateComponentTemplate(componentName)
+          );
           vscode.workspace.applyEdit(componentEdit);
 
           const cssModuleUrl: vscode.Uri = createFileUri(
