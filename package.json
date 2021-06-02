@@ -10,7 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished"
+    "onCommand:reactifold.produceComponent",
+    "onCommand:reactifold.printCurrentFile"
   ],
   "main": "./out/extension.js",
   "contributes": {
