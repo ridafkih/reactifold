@@ -10,13 +10,13 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:reactifold.helloWorld"
+    "onCommand:reactifold.produceComponent"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "reactifold.helloWorld",
+        "command": "reactifold.produceComponent",
         "title": "Hello World"
       }
     ]
