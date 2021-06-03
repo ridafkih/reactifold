@@ -1,5 +1,9 @@
 {
   "name": "reactifold",
+  "publisher": "Goopware",
+  "repository": {
+    "url": "https://github.com/ridarf/reactifold"
+  },
   "displayName": "reactifold",
   "description": "Instantly, and easily create React components.",
   "version": "0.0.1",
