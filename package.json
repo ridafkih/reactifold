@@ -18,12 +18,7 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "reactifold.produceComponent",
-        "title": "Create React Component"
-      }
-    ],
+    "commands": [],
     "menus": {
       "explorer/context": [
         {
